@@ -1,6 +1,7 @@
 ## 1. 소개
 
 <div style="font-weight: bold;">- 로그인 상태, 인증 (JWT 토큰, 서버 세션), base HTTP 네트워크 로직 관련 공통 모듈입니다.</div>
+</br>
 <div style="font-weight: bold;">- 기존에 활용하던 Provider 중첩 구조를 개선하기 위해 제작되었습니다.</div>
 
 ## 2. 사용 라이브러리 및 버전 (제작 시점 기준, 2024/08/27)
