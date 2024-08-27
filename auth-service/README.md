@@ -5,15 +5,11 @@
 
 ## 2. 사용 라이브러리 및 버전 (제작 시점 기준, 2024/08/27)
 
-#### 1. recoil (^0.7.7)
-
-#### 2. recoil-persist (^5.1.0)
-
-#### 3. @tanstack/react-query (^5.51.23)
-
-#### 4. @tanstack/query-sync-storage-persister (^5.51.21)
-
-#### 5. @tanstack/react-query-persist-client (^5.51.23)
+<div>- recoil (^0.7.7)</div>
+<div>- recoil-persist (^5.1.0)</div>
+<div>- @tanstack/react-query (^5.51.23)</div>
+<div>- @tanstack/query-sync-storage-persister (^5.51.21)</div>
+<div>- @tanstack/query-sync-storage-persister (^5.51.21)</div>
 
 ## 3. 구성 요소
 
