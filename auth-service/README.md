@@ -13,6 +13,31 @@
 
 ## 3. 구성 요소
 
+┣ 📂src
+┃ ┣ 📂aboutReactQuery
+┃ ┃ ┣ 📜filterStoredQueries.ts
+┃ ┃ ┣ 📜QueryProvider.tsx
+┃ ┃ ┗ 📜useGetCachingData.ts
+┃ ┣ 📂atom
+┃ ┃ ┣ 📜authExpireTimeAtom.ts
+┃ ┃ ┣ 📜authStateAtom.ts
+┃ ┃ ┗ 📜authTypeAtom.ts
+┃ ┣ 📂type
+┃ ┃ ┗ 📜type.ts
+┃ ┣ 📂useAuth
+┃ ┃ ┗ 📜useAuth.ts
+┃ ┣ 📂useAuthManager
+┃ ┃ ┣ 📜useAuthExpireTime.ts
+┃ ┃ ┗ 📜useAuthManager.ts
+┃ ┣ 📂useService
+┃ ┃ ┗ 📜useService.ts
+┃ ┣ 📂util
+┃ ┃ ┣ 📜convertMillisecondsToMMSS.ts
+┃ ┃ ┣ 📜findValueByKey.ts
+┃ ┃ ┗ 📜selectNecessaryData.ts
+┃ ┗ 📜config.ts
+┗
+
 - 디렉토리/파일 구성
 - hook, service, state, type(?)
 
