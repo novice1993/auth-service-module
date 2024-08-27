@@ -5,25 +5,15 @@
 
 ## 2. 사용 라이브러리 및 버전 (제작 시점 기준, 2024/08/27)
 
-### 1. recoil (^0.7.7)
+#### 1. recoil (^0.7.7)
 
-- 로그인 상태를 저장하는 전역상태 관리 도구
+#### 2. recoil-persist (^5.1.0)
 
-### 2. recoil-persist (^5.1.0)
+#### 3. @tanstack/react-query (^5.51.23)
 
-- 전역 상태를 세션/로컬 스토리지에 저장하고 초기값으로 지정
+#### 4. @tanstack/query-sync-storage-persister (^5.51.21)
 
-### 3. @tanstack/react-query (^5.51.23)
-
-- 인증 데이터 (Token) 캐싱 및 갱신 작업을 수행
-
-### 4. @tanstack/query-sync-storage-persister (^5.51.21)
-
-- 캐싱 데이터를 세션/로컬 스토리지에 저장하고 초기값으로 지정
-
-### 5. @tanstack/react-query-persist-client (^5.51.23)
-
-- 상동 (?)
+#### 5. @tanstack/react-query-persist-client (^5.51.23)
 
 ## 3. 구성 요소
 
