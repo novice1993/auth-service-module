@@ -4,5 +4,4 @@ export enum StorageType {
 }
 
 export const storageType = StorageType.SESSION_STORAGE;
-
 export const serverUrl = process.env.REACT_APP_SERVER_URL;
