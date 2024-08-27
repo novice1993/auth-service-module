@@ -13,6 +13,7 @@
 
 ## 3. 구성 요소
 
+<pre>
 ┣ 📂src
 ┃ ┣ 📂aboutReactQuery
 ┃ ┃ ┣ 📜filterStoredQueries.ts
@@ -37,6 +38,7 @@
 ┃ ┃ ┗ 📜selectNecessaryData.ts
 ┃ ┗ 📜config.ts
 ┗
+</pre>
 
 - 디렉토리/파일 구성
 - hook, service, state, type(?)
