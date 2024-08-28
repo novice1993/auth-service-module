@@ -68,7 +68,8 @@
 
 ##### <div>- 모듈 구성에 활용되는 기타 요소들입니다.</div>
 
-- config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정) <br/>
+- config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정)
+  <br/>
 - type : useAuthManager 관련된 type 입니다. <br/>
 - atom/authExpireTimeAtom : 인증 만료시간 관련 전역상태 입니다.
 - atom/authStateAtom : 로그인 여부와 관련된 전역상태 입니다.
