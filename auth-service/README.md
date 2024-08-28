@@ -50,7 +50,6 @@
 
 <span>- 로그인 이후 인증 데이터 관리 로직을 담당합니다.</span>
 <span>- 인증 데이터 갱신/만료 관련 작업을 수행합니다.</span>
-
 <span>- useAuthManager : 인증 데이터 갱신 관련 작업 수행</span>
 <span>- useAuthExpireTime : 인증 데이터 만료 관련 작업 수행</span>
 
@@ -65,7 +64,6 @@
 #### 5) etc (util, type, atom, config)
 
 <span>- 모듈 구현 시 사용되는 tanstack-query 활용과 관련된 함수 및 Provider 입니다.</span>
-
 <span>- QueryProvider : tanstack-query 저장소 활용을 위해 설정해야 하는 Provider</span>
 <span>- filterStoredQueries : tanstack-query로 캐싱한 데이터를 브라우저 스토리지와 연동할 때 필요한 메서드 <br/>(캐싱 데이터 중 필요한 것만 선택해서 스토리지에 sava/load 할 수 있도록 처리) </span>
 <span>- useGetCachingData : tanstack-query로 캐싱한 데이터를 필요한 컴포넌트에서 호출하여 사용할 수 있도록 구현한 Custom Hook</span>
