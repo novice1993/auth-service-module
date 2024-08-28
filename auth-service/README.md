@@ -43,30 +43,34 @@
 
 #### 1) useAuth
 
-<div>- 로그인/로그아웃 관련된 로직을 담당합니다.</div>
-<div>- 로그인 여부 및 로그인/로그아웃에 파생되는 작업을 수행합니다. (ex. 페이지 경로 변경 등)</div>
+##### <div>- 로그인/로그아웃과 이에 파생되는 작업을 수행합니다</div>
 
 #### 2) useAuthManager
 
-<div>- 로그인 이후 인증 데이터 관리 로직을 담당합니다.</div>
-<div>- 인증 데이터 갱신/만료 관련 작업을 수행합니다.</div>
-<div>- useAuthManager : 인증 데이터 갱신 관련 작업 수행</div>
-<div>- useAuthExpireTime : 인증 데이터 만료 관련 작업 수행</div>
+##### <div>- 로그인 이후 인증 데이터 관리 작업을 담당합니다. (인증 데이터 갱신/만료 관련)</div>
+
+- useAuthManager : 인증 데이터 갱신 관련 작업 수행
+- useAuthExpireTime : 인증 데이터 만료 관련 작업 수행
 
 #### 3) useService
 
-<div>- HTTP/HTTPS 통신 관련 기본 로직을 담당합니다.</div>
+##### <div>- HTTP/HTTPS 통신 관련 기본 로직을 담당합니다.</div>
 
 #### 4) aboutReactQuery
 
-<div>- 모듈 구현 시 사용되는 tanstack-query 활용과 관련된 함수 및 Provider 입니다.</div>
+##### <div>- 모듈 구현 시 사용되는 tanstack-query 활용과 관련된 함수 및 Provider 입니다.</div>
+
+- QueryProvider : tanstack-query 저장소 활용을 위해 설정해야 하는 Provider
+- filterStoredQueries : tanstack-query로 캐싱한 데이터를 브라우저 스토리지와 연동할 때 사용되는 함수 <br/>(캐싱 데이터 중 필요한 것만 선택해서 스토리지에 sava/load 할 수 있도록 처리)
+- useGetCachingData : tanstack-query로 캐싱한 데이터를 필요한 컴포넌트에서 호출하여 사용할 수 있도록 구현한 Custom Hook
 
 #### 5) etc (util, type, atom, config)
 
-<div>- 모듈 구현 시 사용되는 tanstack-query 활용과 관련된 함수 및 Provider 입니다.</div>
-<div>- QueryProvider : tanstack-query 저장소 활용을 위해 설정해야 하는 Provider</div>
-<div>- filterStoredQueries : tanstack-query로 캐싱한 데이터를 브라우저 스토리지와 연동할 때 필요한 메서드 <br/>(캐싱 데이터 중 필요한 것만 선택해서 스토리지에 sava/load 할 수 있도록 처리) </div>
-<div>- useGetCachingData : tanstack-query로 캐싱한 데이터를 필요한 컴포넌트에서 호출하여 사용할 수 있도록 구현한 Custom Hook</div>
+##### <div>- 모듈 구성에 활용되는 기타 요소들입니다.</div>
+
+- config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정)
+- convertMillisecondsToMMSS : 인증 만료시간 관련 밀리세컨드를 MM:SS 형태로 변경해주는 함수
+- selectNecessaryData : 인자로 전달한 key 값과 동일한 객체의 프로퍼티 value를 반환하는 함수<br/>(서버 Response에서 인증 데이터 추출할 때 활용)
 
 ## 4. Logic (How it Works)
 
