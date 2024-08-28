@@ -70,10 +70,12 @@
 
 - config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정)
   <br/><br/>
-- type : useAuthManager 관련된 type 입니다. <br/>
+- type : useAuthManager 관련된 type 입니다.
+  <br/><br/>
 - atom/authExpireTimeAtom : 인증 만료시간 관련 전역상태 입니다.
 - atom/authStateAtom : 로그인 여부와 관련된 전역상태 입니다.
-- atom/authTypeAtom : 인증 방식에 관련된 전역상태 입니다. (JWT Token 방식인지, 서버 Session 방식인지) <br/>
+- atom/authTypeAtom : 인증 방식에 관련된 전역상태 입니다. (JWT Token 방식인지, 서버 Session 방식인지)
+  <br/><br/>
 - util/convertMillisecondsToMMSS : 인증 만료시간 관련 밀리세컨드를 MM:SS 형태로 변경해주는 함수
 - util/selectNecessaryData : 인자로 전달한 key 값과 동일한 객체의 프로퍼티 value를 반환하는 함수<br/>(서버 Response에서 인증 데이터 추출할 때 활용)
 
