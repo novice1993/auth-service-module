@@ -64,13 +64,17 @@
 - filterStoredQueries : tanstack-query로 캐싱한 데이터를 브라우저 스토리지와 연동할 때 사용되는 함수 <br/>(캐싱 데이터 중 필요한 것만 선택해서 스토리지에 sava/load 할 수 있도록 처리)
 - useGetCachingData : tanstack-query로 캐싱한 데이터를 필요한 컴포넌트에서 호출하여 사용할 수 있도록 구현한 Custom Hook
 
-#### 5) etc (util, type, atom, config)
+#### 5) etc (config, type, atom, util)
 
 ##### <div>- 모듈 구성에 활용되는 기타 요소들입니다.</div>
 
-- config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정)
-- convertMillisecondsToMMSS : 인증 만료시간 관련 밀리세컨드를 MM:SS 형태로 변경해주는 함수
-- selectNecessaryData : 인자로 전달한 key 값과 동일한 객체의 프로퍼티 value를 반환하는 함수<br/>(서버 Response에서 인증 데이터 추출할 때 활용)
+- config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정) <br/>
+- type : useAuthManager 관련된 type 입니다. <br/>
+- atom/authExpireTimeAtom : 인증 만료시간 관련 전역상태 입니다.
+- atom/authStateAtom : 로그인 여부와 관련된 전역상태 입니다.
+- atom/authTypeAtom : 인증 방식에 관련된 전역상태 입니다. (JWT Token 방식인지, 서버 Session 방식인지) <br/>
+- util/convertMillisecondsToMMSS : 인증 만료시간 관련 밀리세컨드를 MM:SS 형태로 변경해주는 함수
+- util/selectNecessaryData : 인자로 전달한 key 값과 동일한 객체의 프로퍼티 value를 반환하는 함수<br/>(서버 Response에서 인증 데이터 추출할 때 활용)
 
 ## 4. Logic (How it Works)
 
