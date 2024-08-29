@@ -180,8 +180,7 @@ root.render(
 
 - Root Component를 제외한 최상단 컴포넌트에서 useAuthManager 호출
 - useAuthManger에 전달하는 parameter 통해 세부 동작 제어
-
-##### \* ./type/type.ts (useAuthManager Parameter Type)
+- ./type/type.ts 파일 참고 (useAuthManager Parameter Type)
 
 |    Parameter    |                      Type                       |                              Required                               |                                  Description                                  |
 | :-------------: | :---------------------------------------------: | :-----------------------------------------------------------------: | :---------------------------------------------------------------------------: |
