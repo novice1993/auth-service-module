@@ -131,7 +131,98 @@
 
 ## 5. Usage (Sample Code)
 
-- 설정 관련 샘플
+##### 1) config.ts
+
+- config.ts 파일에서 아래의 두 가지를 설정
+
+1. 브라우저 스토리지 종류
+2. 서버 API 엔드포인트 (현재 환경변수 import 해서 활용하는 형태로 구현)
+
+```
+export enum StorageType {
+  SESSION_STORAGE = "sessionStorage",
+  LOCAL_STORAGE = "localStorage",
+}
+
+export const storageType = StorageType.SESSION_STORAGE;
+export const serverUrl = process.env.REACT_APP_SERVER_URL;
+```
+
+<br/>
+
+##### 2) ./aboutReactQuery/QueryProvider.tsx
+
+- Root Component (ex. index.tsx) 에 Provider 설정 (QueryProvider, RecoilProvider)
+
+```
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
+  <QueryProvider>
+    <RecoilRoot>
+      <AppProvider>
+        <SettingsPanelProvider>
+          <BreakpointsProvider>
+            <ModalProvider>
+              <RouterProvider router={router} />
+            </ModalProvider>
+          </BreakpointsProvider>
+        </SettingsPanelProvider>
+      </AppProvider>
+    </RecoilRoot>
+  </QueryProvider>
+);
+```
+
+<br/>
+
+##### 3) ./useAuthManager/useAuthManager.ts
+
+- Root Component를 제외한 최상단 컴포넌트에서 useAuthManager 호출
+- useAuthManger에 전달하는 parameter 통해 세부 동작 제어
+
+##### \* ./type/type.ts (useAuthManager Parameter Type)
+
+|    Parameter    |                      Type                       |                              Required                               |                                  Description                                  |
+| :-------------: | :---------------------------------------------: | :-----------------------------------------------------------------: | :---------------------------------------------------------------------------: |
+|    authType     |            jwtToken / sessionCookie             |                                  O                                  |                            인증 타입 (토큰, 세션)                             |
+|     isRenew     |                     boolean                     |                                  O                                  |                              인증 정보 갱신 여부                              |
+|  renewInterval  |                     number                      |                    조건부 (isRenew = true 일 때)                    |                                   갱신 주기                                   |
+|   authEndTime   |                     number                      |                                  X                                  |                                인증 만료 시간                                 |
+|     keyName     |     { token?: string, expireTime: string }      | { token: 조건부 (authType === 'jwtToken' 일 때), expireTime: 필수 } | 서버 response의 프로퍼티 명 (토큰, 만료시간 관련 데이터가 담겨오는 Prop Name) |
+| clientRoutePath | { initPagePath: string, loginPagePath: string } |                                  O                                  |                   loginPage, initPage 관련 클라이언트 경로                    |
+|    serverUrl    |  { logoutUrl: string, authRenewUrl?: string }   |  { logoutUrl: 필수, authRenewUrl: 조건부 (isRenew = true 일 때) }   |                     logout, authRenew 관련 서버 api 경로                      |
+
+<br/>
+
+```
+import { PropsWithChildren } from 'react';
+import useAuthManager from 'module/useAuthManager/useAuthManager';
+
+const Root = ({ children }: PropsWithChildren) => {
+  useAuthManager({
+    authType: 'jwtToken',
+    isRenew: true,
+    renewInterval: 1000 * 60,
+    keyName: {
+      token: 'userToken',
+      expireTime: 'userTokenExpire'
+    },
+    clientRoutePath: {
+      loginPagePath: '/auths/sign-in',
+      initPagePath: '/dashboard'
+    },
+    serverUrl: {
+      logoutUrl: '/api/v1/sign/signOut',
+      authRenewUrl: '/api/v1/sign/signRenew'
+    }
+  });
+
+  return <>{children}</>;
+};
+
+export default Root;
+```
 
 ## 6. issue
 
