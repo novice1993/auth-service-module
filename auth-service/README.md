@@ -182,16 +182,60 @@ root.render(
 - useAuthManger에 전달하는 parameter 통해 세부 동작 제어
 - ./type/type.ts 파일 참고 (useAuthManager Parameter Type)
 
-| :-------------: | :---------------------------------------------: | :-----------------------------------------------------------------: | :---------------------------------------------------------------------------: |
-| Parameter | Type | Required | Description |
-| :-------------: | :---------------------------------------------: | :-----------------------------------------------------------------: | :---------------------------------------------------------------------------: |
-| authType | jwtToken / sessionCookie | O | 인증 타입 (토큰, 세션) |
-| isRenew | boolean | O | 인증 정보 갱신 여부 |
-| renewInterval | number | 조건부 (isRenew = true 일 때) | 갱신 주기 |
-| authEndTime | number | X | 인증 만료 시간 |
-| keyName | { token?: string, expireTime: string } | { token: 조건부 (authType === 'jwtToken' 일 때), expireTime: 필수 } | 서버 response의 프로퍼티 명 (토큰, 만료시간 관련 데이터가 담겨오는 Prop Name) |
-| clientRoutePath | { initPagePath: string, loginPagePath: string } | O | loginPage, initPage 관련 클라이언트 경로 |
-| serverUrl | { logoutUrl: string, authRenewUrl?: string } | { logoutUrl: 필수, authRenewUrl: 조건부 (isRenew = true 일 때) } | logout, authRenew 관련 서버 api 경로 |
+<table>
+  <thead>
+    <tr style="text-align:center;">
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="text-align:center;">
+      <td>authType</td>
+      <td>jwtToken / sessionCookie</td>
+      <td>O</td>
+      <td>인증 타입 (토큰, 세션)</td>
+    </tr>
+    <tr style="text-align:center;">
+      <td>isRenew</td>
+      <td>boolean</td>
+      <td>O</td>
+      <td>인증 정보 갱신 여부</td>
+    </tr>
+    <tr style="text-align:center;">
+      <td>renewInterval</td>
+      <td>number</td>
+      <td>조건부 (isRenew = true 일 때)</td>
+      <td>갱신 주기</td>
+    </tr>
+    <tr style="text-align:center;">
+      <td>authEndTime</td>
+      <td>number</td>
+      <td>X</td>
+      <td>인증 만료 시간</td>
+    </tr>
+    <tr style="text-align:center;">
+      <td>keyName</td>
+      <td>{ token?: string, expireTime: string }</td>
+      <td>{ token: 조건부 (authType === 'jwtToken' 일 때), expireTime: 필수 }</td>
+      <td>서버 response의 프로퍼티 명 (토큰, 만료시간 관련 데이터가 담겨오는 Prop Name)</td>
+    </tr>
+    <tr style="text-align:center;">
+      <td>clientRoutePath</td>
+      <td>{ initPagePath: string, loginPagePath: string }</td>
+      <td>O</td>
+      <td>loginPage, initPage 관련 클라이언트 경로</td>
+    </tr>
+    <tr style="text-align:center;">
+      <td>serverUrl</td>
+      <td>{ logoutUrl: string, authRenewUrl?: string }</td>
+      <td>{ logoutUrl: 필수, authRenewUrl: 조건부 (isRenew = true 일 때) }</td>
+      <td>logout, authRenew 관련 서버 api 경로</td>
+    </tr>
+  </tbody>
+</table>
 
 <br/>
 
