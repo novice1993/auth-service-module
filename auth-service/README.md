@@ -78,8 +78,53 @@
 
 ## 4. Logic (How it Works)
 
-- 다이어그램 작성 후 첨부
-- 관련 설명 첨부 : 순차적 설명 + 코드 스니펫
+![Logic_Diagram](./asset/logic_diagram.jpg)
+
+##### 0) 초기 값 지정
+
+- 브라우저 스토리지에 저장된 데이터 있는지 체크 후, 있을 시 초기 값으로 지정
+- 관련 데이터 : 로그인 상태 (AUTH_STATE), 인증 정보 (AUTH_INFO)
+- 로그인 상태, 인증 정보 갱신될 때마다 브라우저 스토리지 데이터 역시 갱신 됨
+
+##### 1) 최초 로그인 (브라우저 스토리지에 저장된 데이터 없다고 가정)
+
+- 로그인 페이지에서 로그인 시, Recoil Provider로 관리 중인 전역 상태 변경 됨 (authAtom)
+
+##### 2) 인증 정보 관리 (초기 값 설정, 갱신)
+
+- authAtom 의 상태 변경이 useAuthManager로 전달 됨
+- 이를 통해 최초 로그인임을 인지하고, 초기 인증 값을 받아옴 (setInitAuth 함수 호출)
+- 만약 갱신 조건이 참이라면 (useAuthManager의 파라미터 중, isRenew) 갱신 주기 (renewInterval) 에 맞춰 인증 값 갱신 (setAuthRenew 함수 반복 호출)
+
+##### 3-1) 인증 정보 캐싱 처리
+
+- 서버에서 인증 정보를 수신할 때마다 tanstack-query Provider를 활용하여 데이터 캐싱 처리 수행 (설정한 key 값에 매핑)
+- 최초 인증 정보 key : loginInfo
+- 갱신 인증 정보 key : tokenInfo
+
+##### 3-2) 인증 만료 시간 설정
+
+- 최초 로그인 시 받아온 데이터 중 인증 만료시간 (expireTime) 활용하여 만료 카운트 다운 실행
+- 특정 동작 (새로고침, 페이지 경로 변경) 수행 시 만료 시간 초기화
+
+##### 4) 인증 정보 활용
+
+- tanstack-qeury Provider 에 캐싱해놓은 인증 정보 활용하여 HTTP/HTTPS 통신 (haeder의 Authorization 설정)
+
+##### 5) 인증 정보 만료
+
+- 인증 정보 만료될 시 로그아웃 상태로 변경 (authAtom 변경)
+
+##### 6) 로그아웃 관련 처리
+
+- useAuth에서 변경된 authAtom을 감지하고 로그아웃 관련 작업 처리
+- 로그인 페이지로 브라우저 경로 이동
+- tanstack-query Provider에 캐싱된 데이터 제거 요청
+- 브라우저 스토리지에 저장된 데이터 제거
+
+##### 7) 캐싱 데이터 제거
+
+- useAuth에서 보낸 요청을 수신하여 캐싱된 인증 데이터 제거 (loginInfo, tokenInfo)
 
 ## 5. Usage (Sample Code)
 
