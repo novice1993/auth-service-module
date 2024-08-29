@@ -11,7 +11,7 @@
 <div>- recoil-persist (^5.1.0)</div>
 <div>- @tanstack/react-query (^5.51.23)</div>
 <div>- @tanstack/query-sync-storage-persister (^5.51.21)</div>
-<div>- @tanstack/query-sync-storage-persister (^5.51.21)</div>
+<div>- @tanstack/react-query-persist-client ("^5.45.1)</div>
 
 ## 3. Structure (Directories and Files)
 
