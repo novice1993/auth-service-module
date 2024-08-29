@@ -119,9 +119,10 @@
 
 - useAuth에서 변경된 authAtom을 감지하고 로그아웃 관련 작업 처리
 <ul>
-<li>로그인 페이지로 브라우저 경로 이동</li>
-<li>tanstack-query Provider에 캐싱된 데이터 제거 요청</li>
-<li>브라우저 스토리지에 저장된 데이터 제거</li>
+
+1. 로그인 페이지로 브라우저 경로 이동</br>
+2. tanstack-query Provider에 캐싱된 데이터 제거 요청</br>
+3. 브라우저 스토리지에 저장된 데이터 제거</br>
 </ul>
 
 ##### 7) 캐싱 데이터 제거
