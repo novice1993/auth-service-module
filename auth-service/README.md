@@ -270,4 +270,5 @@ export default Root;
 
 ## 6. issue
 
-- recoil 교체 필요성
+- 모듈에서 전역상태 관리 도구로 사용 중인 Recoil의 공식 업데이트가 중단 되어 전역 상태 관리도구 변경이 필요함
+- Recoil과 유사하게 Atomic 패턴을 활용하는 Jotai를 사용하여 마이그레이션 하는 방향 검토
