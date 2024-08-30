@@ -9,7 +9,7 @@ import useAuthExpireTime from "./useAuthExpireTime";
 
 import { selectNecessaryData } from "../util/selectNecessaryData";
 import { TargetObjectType } from "../util/selectNecessaryData";
-import { authAtom, AuthState } from "../atom/authStateAtom";
+import { authStateAtom, AuthState } from "../atom/authStateAtom";
 import { authTypeAtom } from "../atom/authTypeAtom";
 import { AuthManagerProps } from "../type/type";
 import { storageType, StorageType } from "../config";
@@ -31,7 +31,7 @@ const useAuthManager = (props: AuthManagerProps) => {
   const { httpRequestForAuthRenew } = useService();
 
   const setAuthType = useSetRecoilState(authTypeAtom);
-  const [loginState, setLoginState] = useRecoilState(authAtom);
+  const [loginState, setLoginState] = useRecoilState(authStateAtom);
   const loginInfo = useGetCachingData({ queryKey: ["loginInfo"] }).data;
 
   useAuth(clientRoutePath.loginPagePath, clientRoutePath.initPagePath);

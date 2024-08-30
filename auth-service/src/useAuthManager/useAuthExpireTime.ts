@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { selectNecessaryData } from "../util/selectNecessaryData";
 import { TargetObjectType } from "../util/selectNecessaryData";
 import { authExpireTimeAtom } from "../atom/authExpireTimeAtom";
-import { authAtom, AuthState } from "../atom/authStateAtom";
+import { authStateAtom, AuthState } from "../atom/authStateAtom";
 
 /**
  * prevCountDownTimeStamp, accumulatedErrorMillsRef 가 활용되는 이유
@@ -21,7 +21,7 @@ const useAuthExpireTime = (
 ) => {
   const location = useLocation();
 
-  const setLoginState = useSetRecoilState(authAtom);
+  const setLoginState = useSetRecoilState(authStateAtom);
   const setAuthExpireTime = useSetRecoilState(authExpireTimeAtom);
 
   const isAuthExpire = useRef(false);

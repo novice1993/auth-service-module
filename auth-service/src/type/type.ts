@@ -1,4 +1,7 @@
-type BaseAuthProps<T extends 'jwtToken' | 'sessionCookie', R extends boolean> = {
+type BaseAuthProps<
+  T extends "jwtToken" | "sessionCookie",
+  R extends boolean
+> = {
   authType: T;
   isRenew: R;
   authEndTime?: number;
@@ -9,7 +12,7 @@ type BaseAuthProps<T extends 'jwtToken' | 'sessionCookie', R extends boolean> = 
 };
 
 type JwtTokenAuthProps =
-  | (BaseAuthProps<'jwtToken', false> & {
+  | (BaseAuthProps<"jwtToken", false> & {
       keyName: {
         token: string;
         expireTime: string;
@@ -18,7 +21,7 @@ type JwtTokenAuthProps =
         logoutUrl: string;
       };
     })
-  | (BaseAuthProps<'jwtToken', true> & {
+  | (BaseAuthProps<"jwtToken", true> & {
       renewInterval: number;
       keyName: {
         token: string;
@@ -31,7 +34,7 @@ type JwtTokenAuthProps =
     });
 
 type SessionCookieAuthProps =
-  | (BaseAuthProps<'sessionCookie', false> & {
+  | (BaseAuthProps<"sessionCookie", false> & {
       keyName: {
         expireTime: string;
       };
@@ -39,7 +42,7 @@ type SessionCookieAuthProps =
         logoutUrl: string;
       };
     })
-  | (BaseAuthProps<'sessionCookie', true> & {
+  | (BaseAuthProps<"sessionCookie", true> & {
       renewInterval: number;
       keyName: {
         expireTime: string;

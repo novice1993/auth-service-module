@@ -15,7 +15,7 @@ const { persistAtom } = recoilPersist({
     storageType === StorageType.SESSION_STORAGE ? sessionStorage : localStorage,
 });
 
-export const authAtom = atom({
+export const authStateAtom = atom({
   key: "AUTH_STATE",
   default: AuthState.NORMAL_LOGOUT,
   effects_UNSTABLE: [persistAtom],

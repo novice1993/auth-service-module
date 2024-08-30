@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useQueryClient } from "@tanstack/react-query";
-import { authAtom, AuthState } from "../atom/authStateAtom";
+import { authStateAtom, AuthState } from "../atom/authStateAtom";
 import { AuthType, authTypeAtom } from "../atom/authTypeAtom";
 import { serverUrl } from "../config";
 
@@ -15,7 +15,7 @@ const useService = () => {
   const queryClient = useQueryClient();
 
   const authType = useRecoilValue(authTypeAtom);
-  const [authState, setAuthState] = useRecoilState(authAtom);
+  const [authState, setAuthState] = useRecoilState(authStateAtom);
 
   const checkRequest = () => {
     if (authState !== AuthState.LOGIN || authType !== AuthType.JWT_TOKEN) {

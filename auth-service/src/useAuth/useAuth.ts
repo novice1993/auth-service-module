@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useService from "../useService/useService";
-import { authAtom, AuthState } from "../atom/authStateAtom";
+import { authStateAtom, AuthState } from "../atom/authStateAtom";
 import { storageType, StorageType } from "../config";
 
 const storage =
@@ -16,7 +16,7 @@ const useAuth = (loginPagePath?: string, initPagePath?: string) => {
   const navigate = useNavigate();
 
   const { httpRequestGET, httpRequestPOST } = useService();
-  const [authState, setAuthState] = useRecoilState(authAtom);
+  const [authState, setAuthState] = useRecoilState(authStateAtom);
   const [loginStatusInfo, setLoginStatusInfo] = useState<{
     statusCode: number;
     statusText: string;

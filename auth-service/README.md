@@ -7,6 +7,14 @@
 
 ## 2. Dependencies (Libraries Used)
 
+##### 버전 기준일 : 2024년 8월
+
+- 라이브러리는 명시된 버전 이상을 사용하는 것이 권장됩니다.
+- 각 라이브러리의 버전은 모듈 개발 당시 안정화된 최신 버전을 기준으로 합니다.
+
+<div>- react (^18.2.0)</div>
+<div>- react-dom (^18.2.0)</div>
+<div>- react-router-dom (^6.8.1)</div>
 <div>- recoil (^0.7.7)</div>
 <div>- recoil-persist (^5.1.0)</div>
 <div>- @tanstack/react-query (^5.51.23)</div>
@@ -69,10 +77,10 @@
 ##### <div>- 모듈 구성에 활용되는 기타 요소들입니다.</div>
 
 - config : 모듈 관련 세부 설정 (브라우저 저장소 선택, 서버 API 엔드포인트 지정)
-- type : useAuthManager 관련된 type 입니다.
-- atom/authExpireTimeAtom : 인증 만료시간 관련 전역상태 입니다.
-- atom/authStateAtom : 로그인 여부와 관련된 전역상태 입니다.
-- atom/authTypeAtom : 인증 방식에 관련된 전역상태 입니다. (JWT Token 방식인지, 서버 Session 방식인지)
+- type : useAuthManager 관련된 type
+- atom/authExpireTimeAtom : 인증 만료시간 관련 전역상태
+- atom/authStateAtom : 로그인 여부와 관련된 전역상태
+- atom/authTypeAtom : 인증 방식에 관련된 전역상태 (JWT Token 방식인지, 서버 Session 방식인지)
 - util/convertMillisecondsToMMSS : 인증 만료시간 관련 밀리세컨드를 MM:SS 형태로 변경해주는 함수
 - util/selectNecessaryData : 인자로 전달한 key 값과 동일한 객체의 프로퍼티 value를 반환하는 함수<br/>(서버 Response에서 인증 데이터 추출할 때 활용)
 
@@ -82,23 +90,23 @@
 
 ##### 0) 초기 값 지정
 
-- 브라우저 스토리지에 저장된 데이터 있는지 체크 후, 있을 시 초기 값으로 지정
+- 브라우저 스토리지에 저장된 데이터가 있는지 체크 후, 있을 시 초기 값으로 지정
 - 관련 데이터 : 로그인 상태 (AUTH_STATE), 인증 정보 (AUTH_INFO)
-- 로그인 상태, 인증 정보 갱신될 때마다 브라우저 스토리지 데이터 역시 갱신 됨
+- 로그인 상태, 인증 정보가 갱신될 때마다 브라우저 스토리지 데이터 역시 갱신 됨
 
 ##### 1) 최초 로그인 (브라우저 스토리지에 저장된 데이터 없다고 가정)
 
-- 로그인 페이지에서 로그인 시, Recoil Provider로 관리 중인 전역 상태 변경 됨 (authAtom)
+- 로그인 페이지에서 로그인 시, Recoil Provider로 관리 중인 전역 상태 변경 됨 (authStateAtom)
 
 ##### 2) 인증 정보 관리 (초기 값 설정, 갱신)
 
-- authAtom 의 상태 변경이 useAuthManager로 전달 됨
-- 이를 통해 최초 로그인임을 인지하고, 초기 인증 값을 받아옴 (setInitAuth 함수 호출)
-- 만약 갱신 조건이 참이라면 (useAuthManager의 파라미터 중, isRenew) 갱신 주기 (renewInterval) 에 맞춰 인증 값 갱신 (setAuthRenew 함수 반복 호출)
+- authStateAtom 의 상태 변경이 useAuthManager로 전달 됨
+- 이를 통해 로그인 되었음을 인지하고, 초기 인증 값을 받아옴 (setInitAuth 함수 호출)
+- 만약 갱신 조건이 참이라면 (useAuthManager의 파라미터 중, isRenew가 true이면) 갱신 주기 (renewInterval) 에 맞춰 인증 값이 갱신 됨 (setAuthRenew 함수 반복 호출)
 
 ##### 3-1) 인증 정보 캐싱 처리
 
-- 서버에서 인증 정보를 수신할 때마다 tanstack-query Provider를 활용하여 데이터 캐싱 처리 수행 (설정한 key 값에 매핑)
+- 서버에서 인증 정보를 수신할 때마다 tanstack-query Provider를 활용하여 데이터 캐싱 처리 (설정한 key 값에 매핑)
 - 최초 인증 정보 key : loginInfo
 - 갱신 인증 정보 key : tokenInfo
 
@@ -113,11 +121,11 @@
 
 ##### 5) 인증 정보 만료
 
-- 인증 정보 만료될 시 로그아웃 상태로 변경 (authAtom 변경)
+- 인증 정보 만료될 시 로그아웃 상태로 변경 (authStateAtom 변경)
 
 ##### 6) 로그아웃 관련 처리
 
-- useAuth에서 변경된 authAtom을 감지하고 로그아웃 관련 작업 처리
+- authStateAtom가 로그아웃으로 변경됨을 감지하고 관련 작업 처리
 <ul>
 
 1. 로그인 페이지로 브라우저 경로 이동</br>
@@ -127,7 +135,7 @@
 
 ##### 7) 캐싱 데이터 제거
 
-- useAuth에서 보낸 요청을 수신하여 캐싱된 인증 데이터 제거 (loginInfo, tokenInfo)
+- useAuth에서 보낸 요청을 수신하여 캐싱 데이터 제거 (loginInfo, tokenInfo)
 
 ## 5. Usage (Sample Code)
 
@@ -155,6 +163,17 @@ export const serverUrl = process.env.REACT_APP_SERVER_URL;
 - Root Component (ex. index.tsx) 에 Provider 설정 (QueryProvider, RecoilProvider)
 
 ```
+import ReactDOM from 'react-dom/client';
+import { router } from 'Routes';
+import { RouterProvider } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+
+import QueryProvider from 'module/aboutReactQuery/QueryProvider';
+import AppProvider from 'providers/AppProvider';
+import BreakpointsProvider from 'providers/BreakpointsProvider';
+import SettingsPanelProvider from 'providers/SettingsPanelProvider';
+import ModalProvider from 'providers/ModalProvider';
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
@@ -172,6 +191,7 @@ root.render(
     </RecoilRoot>
   </QueryProvider>
 );
+
 ```
 
 <br/>
@@ -179,8 +199,7 @@ root.render(
 ##### 3) ./useAuthManager/useAuthManager.ts
 
 - Root Component를 제외한 최상단 컴포넌트에서 useAuthManager 호출
-- useAuthManger에 전달하는 parameter 통해 세부 동작 제어
-- ./type/type.ts 파일 참고 (useAuthManager Parameter Type)
+- useAuthManger에 전달하는 parameter 통해 세부 동작 제어 (./type/type.ts 참고)
 
 <table>
   <thead>
@@ -218,20 +237,34 @@ root.render(
     </tr>
     <tr style="text-align:center;">
       <td>keyName</td>
-      <td>{ token?: string, expireTime: string }</td>
-      <td>{ token: 조건부 (authType === 'jwtToken' 일 때), expireTime: 필수 }</td>
+      <td><div>{ token?: string, </div>
+      <div>expireTime: string }</div>
+      </td>
+      <td>
+      <div>{ token: 조건부 (authType === 'jwtToken' 일 때),</div>
+      <div>expireTime: 필수 }</div>
+       </td>
       <td>서버 response의 프로퍼티 명 (토큰, 만료시간 관련 데이터가 담겨오는 Prop Name)</td>
     </tr>
     <tr style="text-align:center;">
       <td>clientRoutePath</td>
-      <td>{ initPagePath: string, loginPagePath: string }</td>
+      <td>
+      <div>{ initPagePath: string,</div>
+      <div>loginPagePath: string }</div>
+       </td>
       <td>O</td>
       <td>loginPage, initPage 관련 클라이언트 경로</td>
     </tr>
     <tr style="text-align:center;">
       <td>serverUrl</td>
-      <td>{ logoutUrl: string, authRenewUrl?: string }</td>
-      <td>{ logoutUrl: 필수, authRenewUrl: 조건부 (isRenew = true 일 때) }</td>
+      <td>
+      <div>{ logoutUrl: string,</div>
+      <div>authRenewUrl?: string }</div>
+       </td>
+      <td>
+      <div>{ logoutUrl: 필수,</div>
+      <div>authRenewUrl: 조건부 (isRenew = true 일 때) }</div>
+       </td>
       <td>logout, authRenew 관련 서버 api 경로</td>
     </tr>
   </tbody>
@@ -270,5 +303,5 @@ export default Root;
 
 ## 6. issue
 
-- 모듈에서 전역상태 관리 도구로 사용 중인 Recoil의 공식 업데이트가 중단 되어 전역 상태 관리도구 변경이 필요함
-- Recoil과 유사하게 Atomic 패턴을 활용하는 Jotai를 사용하여 마이그레이션 하는 방향 검토
+- 모듈에서 전역상태 관리 도구로 사용 중인 Recoil의 공식 업데이트가 중단 됨
+- Recoil과 유사하게 Atomic 패턴을 활용하는 Jotai로 마이그레이션 하는 방향 검토
