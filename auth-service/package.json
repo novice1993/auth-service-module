@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "@tanstack/query-sync-storage-persister": "^5.51.21",
