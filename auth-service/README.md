@@ -146,7 +146,7 @@
 1. 브라우저 스토리지 종류
 2. 서버 API 엔드포인트 (현재 환경변수 import 해서 활용하는 형태로 구현)
 
-```
+```ts
 export enum StorageType {
   SESSION_STORAGE = "sessionStorage",
   LOCAL_STORAGE = "localStorage",
@@ -162,7 +162,7 @@ export const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 - Root Component (ex. index.tsx) 에 Provider 설정 (QueryProvider, RecoilProvider)
 
-```
+```jsx
 import ReactDOM from 'react-dom/client';
 import { router } from 'Routes';
 import { RouterProvider } from 'react-router-dom';
@@ -272,7 +272,7 @@ root.render(
 
 <br/>
 
-```
+```jsx
 import { PropsWithChildren } from 'react';
 import useAuthManager from 'module/useAuthManager/useAuthManager';
 
