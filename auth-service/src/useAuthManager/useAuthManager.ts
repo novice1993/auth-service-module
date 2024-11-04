@@ -102,7 +102,7 @@ const useAuthManager = (props: AuthManagerProps) => {
     },
     queryKey: authType === "jwtToken" ? ["tokenInfo"] : ["cookieInfo"],
     queryFn: setAuthQueryFn,
-    enabled: loginState === AuthState.LOGIN && isRenew, // 로그인 상태일 때 동작
+    enabled: loginState === AuthState.LOGIN, // 로그인 상태일 때 동작
     refetchInterval: isRenew && props.renewInterval,
     notifyOnChangeProps: [],
   });
